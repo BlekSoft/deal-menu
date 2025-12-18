@@ -10,6 +10,7 @@
             --text-color: var(--tg-theme-text-color, #222222);
             --btn-color: var(--tg-theme-button-color, #3390ec);
             --btn-text: var(--tg-theme-button-text-color, #ffffff);
+            --hint-color: var(--tg-theme-hint-color, #999999);
         }
         body {
             background-color: var(--bg-color);
@@ -17,8 +18,8 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             text-align: center;
             padding: 20px; margin: 0;
+            padding-bottom: 80px; /* Platz für den MainButton unten */
         }
-        .header-img { width: 80px; height: 80px; border-radius: 20px; margin-bottom: 15px; }
         .main-button {
             display: block;
             background: var(--btn-color);
@@ -41,13 +42,19 @@
             border-radius: 10px;
             margin-bottom: 10px;
         }
+        .close-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--hint-color);
+            text-decoration: none;
+            font-size: 0.85em;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <h3>Unser Deal-Netzwerk</h3>
     <p>Verpasse kein Schnäppchen mehr!</p>
-    
-    <a href="DEIN_ORDNER_LINK_HIER" class="main-button">➕ Alle Kanäle hinzufügen</a>
     
     <hr style="opacity: 0.2; margin: 20px 0;">
     
@@ -57,10 +64,27 @@
     <a href="https://t.me/dealradarplushouse" class="sub-button">🏠 Haushalt, Wohnen & Drogerie</a>
     <a href="https://t.me/dealradarplusfood" class="sub-button">🍎 Essen & Tierbedarf</a>
 
+    <div class="close-link" onclick="closeMe()">❌ Fenster schließen & zurück zum Deal</div>
+
     <script>
         const webapp = window.Telegram.WebApp;
         webapp.ready();
-        webapp.expand(); // Macht das Fenster sofort groß
+        webapp.expand();
+
+        // Funktion zum Schließen der WebApp
+        function closeMe() {
+            webapp.close();
+        }
+
+        // Konfiguration des nativen Telegram Haupt-Buttons ganz unten
+        webapp.MainButton.text = "ZURÜCK ZUM DEAL";
+        webapp.MainButton.textColor = webapp.themeParams.button_text_color;
+        webapp.MainButton.color = webapp.themeParams.button_color;
+        webapp.MainButton.show();
+        
+        webapp.MainButton.onClick(function() {
+            webapp.close();
+        });
     </script>
 </body>
 </html>
