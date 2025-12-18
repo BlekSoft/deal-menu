@@ -109,4 +109,32 @@
         <a href="https://t.me/dealradarplushouse" class="sub-button">
             <span class="emoji-box">🏠</span>
             <span class="btn-text">Haus & Garten</span>
-            <span class="arrow
+            <span class="arrow">❯</span>
+        </a>
+        <a href="https://t.me/dealradarplusfood" class="sub-button">
+            <span class="emoji-box">🍎</span>
+            <span class="btn-text">Essen & Tierbedarf</span>
+            <span class="arrow">❯</span>
+        </a>
+    </div>
+
+    <div class="close-link" onclick="closeMe()">❌ Fenster schließen</div>
+
+    <script>
+        const webapp = window.Telegram.WebApp;
+        webapp.ready();
+        webapp.expand();
+
+        function closeMe() {
+            webapp.close();
+        }
+
+        // Telegram Button Konfiguration
+        webapp.MainButton.text = "ZURÜCK ZUM DEAL";
+        webapp.MainButton.show();
+        webapp.MainButton.onClick(function() {
+            webapp.close();
+        });
+    </script>
+</body>
+</html>
