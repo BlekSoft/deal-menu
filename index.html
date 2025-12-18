@@ -117,17 +117,6 @@
         </a>
     </div>
 
-    <div class="close-link" onclick="closeMe()">❌ Fenster schließen</div>
-
-    <script>
-        const webapp = window.Telegram.WebApp;
-        webapp.ready();
-        webapp.expand();
-
-        function closeMe() {
-            webapp.close();
-        }
-
         // Telegram Button Konfiguration
         webapp.MainButton.text = "ZURÜCK ZUM DEAL";
         webapp.MainButton.show();
